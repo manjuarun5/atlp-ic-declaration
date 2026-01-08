@@ -1,4 +1,4 @@
-# Azure Document Processing API
+# Azure Document Processing API - I&C Declaration Document Reading
 
 FastAPI application for processing documents from Azure Blob Storage using Azure AI Content Understanding and transforming data with Azure OpenAI.
 
