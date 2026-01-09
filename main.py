@@ -26,6 +26,38 @@ load_dotenv()
 
 app = FastAPI(title="Azure Document Processing API")
 
+# Load template from file
+def load_template():
+    """Load the JSON template from template.json file"""
+    template_path = os.path.join(os.path.dirname(__file__), "template.json")
+    try:
+        with open(template_path, 'r', encoding='utf-8') as f:
+            # Remove comments from JSON before parsing
+            content = f.read()
+            # Remove single-line comments (// ...)
+            lines = content.split('\n')
+            cleaned_lines = []
+            for line in lines:
+                # Find comment position and remove it
+                comment_pos = line.find('//')
+                if comment_pos != -1:
+                    # Check if // is inside a string
+                    before_comment = line[:comment_pos]
+                    quote_count = before_comment.count('"') - before_comment.count('\\"')
+                    if quote_count % 2 == 0:  # Even number of quotes means // is outside string
+                        line = line[:comment_pos]
+                cleaned_lines.append(line)
+            cleaned_content = '\n'.join(cleaned_lines)
+            return json.loads(cleaned_content)
+    except FileNotFoundError:
+        logger.warning("template.json not found, using default template")
+        return DEFAULT_TEMPLATE
+    except json.JSONDecodeError as e:
+        logger.error(f"Error parsing template.json: {str(e)}")
+        return DEFAULT_TEMPLATE
+
+TEMPLATE = load_template()
+
 # Configuration - Set these as environment variables
 BLOB_CONNECTION_STRING = os.getenv("AZURE_BLOB_CONNECTION_STRING")
 BLOB_CONTAINER_NAME = os.getenv("AZURE_BLOB_CONTAINER_NAME")
@@ -56,8 +88,7 @@ openai_client = AzureOpenAI(
 class DocumentRequest(BaseModel):
     folder_path: str
     filename: Optional[str] = None
-    target_template: dict
-    model_id: str  # Your custom model ID or prebuilt models (e.g., "prebuilt-invoice", "prebuilt-receipt", "prebuilt-layout", etc.)
+    model_id: str  # Your custom model ID or prebuilt models
 
 class DocumentResponse(BaseModel):
     status: str
@@ -91,10 +122,10 @@ async def process_document(request: DocumentRequest):
         if request.filename:
             # Process single file
             blob_path = f"{request.folder_path}/{request.filename}".lstrip("/")
-            return await process_single_document(blob_path, request.model_id, request.target_template)
+            return await process_single_document(blob_path, request.model_id)
         else:
             # Process all files in folder
-            return await process_folder(request.folder_path, request.model_id, request.target_template)
+            return await process_folder(request.folder_path, request.model_id)
             
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error processing document: {str(e)}")
@@ -179,7 +210,7 @@ async def analyze_with_content_understanding(blob_url: str, model_id: str):
     
     raise HTTPException(status_code=408, detail="Analysis timed out after 4 minutes")
 
-async def process_single_document(blob_path: str, model_id: str, target_template: dict):
+async def process_single_document(blob_path: str, model_id: str):
     """
     Process a single document from blob storage
     """
@@ -285,50 +316,102 @@ async def process_single_document(blob_path: str, model_id: str, target_template
                     doc_data["fields"][name] = str(field.value)
             analysis_result["documents"].append(doc_data)
     
-    # Step 3: Transform with Azure OpenAI
-    template = target_template if target_template else DEFAULT_TEMPLATE
+    # Step 3: Transform with Azure OpenAI using the loaded template
     
     logger.info(f"Transforming data with OpenAI model: {AZURE_OPENAI_DEPLOYMENT}")
         
-    prompt = f"""You are a data transformation assistant. 
+    prompt = f"""You are a data transformation assistant specializing in customs and shipping documents.
         
-I have extracted data from a document using Azure Document Intelligence. 
-Please transform this data into the specified JSON template format.
+I have extracted data from a shipping/customs document using Azure Document Intelligence. 
+Please transform this data into the specified JSON template format for customs declaration.
+
+IMPORTANT MAPPING INSTRUCTIONS:
+1. Map the extracted document fields to the appropriate template fields
+2. For the BOL (Bill of Lading) section:
+   - Use WaybillNumber for HouseBLNumber
+   - Use Shipper information for Shipper and ShipperCode
+   - Use Receiver information for Consignee
+   - Use ShipmentWeight for GrossWeight and NetWeight
+   - Use PieceCount for Quantity
+   - Use ContentsDescription for GoodDesc
+   
+3. For the CustBillHeaders section:
+   - Use ShipmentDate for relevant date fields
+   - Use CustomsDeclaredValue and CustomsDeclaredCurrency for invoice amounts
+   
+4. For CUST_BILL_INVOICES within CustBillDetails:
+   - Create invoice items from the extracted data
+   - Map CustomsDeclaredValue to Amount
+   - Map ShipmentWeight to NetWeight and GrossWeight
+   - Map PieceCount to Quantity
+   
+5. If a field cannot be found in the extracted data, use null or appropriate default values from the template
+6. Maintain the exact structure of the template including all nested objects and arrays
+7. Keep all empty/null fields as they are in the template
 
 Extracted Document Data:
 {json.dumps(analysis_result, indent=2)}
 
 Target JSON Template:
-{json.dumps(template, indent=2)}
+{json.dumps(TEMPLATE, indent=2)}
 
 Instructions:
-1. Map the extracted data to the template fields as accurately as possible
-2. If a field cannot be found in the extracted data, leave it as null or empty based on the template
-3. Maintain the exact structure of the template
-4. Return ONLY the valid JSON object, no explanations or additional text
+1. Carefully map the extracted data to the template fields following the mapping instructions above
+2. Preserve the complete template structure with all nested objects and arrays
+3. Return ONLY the valid JSON object, no explanations or additional text
+4. Ensure all date fields are in ISO 8601 format where applicable
 
 Transformed JSON:"""
 
-    response = openai_client.chat.completions.create(
-            model=AZURE_OPENAI_DEPLOYMENT,
-            messages=[
-                {"role": "system", "content": "You are a data transformation expert. Return only valid JSON."},
-                {"role": "user", "content": prompt}
-            ],
-            response_format={"type": "json_object"}
-        )
+    # Retry logic for rate limiting
+    max_retries = 3
+    retry_delay = 60  # Start with 60 seconds as suggested by the error
     
-    transformed_data = json.loads(response.choices[0].message.content)
+    for attempt in range(max_retries):
+        try:
+            logger.info(f"Calling OpenAI API (attempt {attempt + 1}/{max_retries})...")
+            response = openai_client.chat.completions.create(
+                model=AZURE_OPENAI_DEPLOYMENT,
+                messages=[
+                    {"role": "system", "content": "You are a data transformation expert specializing in customs and shipping document processing. Return only valid JSON matching the exact template structure provided."},
+                    {"role": "user", "content": prompt}
+                ],
+                response_format={"type": "json_object"}
+            )
+            
+            transformed_data = json.loads(response.choices[0].message.content)
+            logger.info(f"Document processing completed successfully for: {blob_path}")
+            
+            return DocumentResponse(
+                status="success",
+                transformed_data=transformed_data,
+                original_analysis=analysis_result
+            )
+            
+        except Exception as e:
+            error_str = str(e)
+            
+            # Check if it's a rate limit error (429)
+            if "429" in error_str or "RateLimitReached" in error_str:
+                if attempt < max_retries - 1:  # Don't sleep on the last attempt
+                    logger.warning(f"Rate limit reached. Waiting {retry_delay} seconds before retry {attempt + 2}/{max_retries}...")
+                    time.sleep(retry_delay)
+                    retry_delay *= 2  # Exponential backoff
+                else:
+                    logger.error(f"Rate limit exceeded after {max_retries} attempts")
+                    raise HTTPException(
+                        status_code=429,
+                        detail=f"Azure OpenAI rate limit exceeded. Please try again later. Original error: {error_str}"
+                    )
+            else:
+                # For non-rate-limit errors, raise immediately
+                logger.error(f"OpenAI API error: {error_str}")
+                raise HTTPException(status_code=500, detail=f"Error transforming data: {error_str}")
     
-    logger.info(f"Document processing completed successfully for: {blob_path}")
-    
-    return DocumentResponse(
-        status="success",
-        transformed_data=transformed_data,
-        original_analysis=analysis_result
-    )
+    # This should never be reached, but just in case
+    raise HTTPException(status_code=500, detail="Unexpected error in OpenAI transformation")
 
-async def process_folder(folder_path: str, model_id: str, target_template: dict):
+async def process_folder(folder_path: str, model_id: str):
     """
     Process all documents in a folder from blob storage
     """
@@ -352,7 +435,7 @@ async def process_folder(folder_path: str, model_id: str, target_template: dict)
             
         total_files += 1
         try:
-            result = await process_single_document(blob.name, model_id, target_template)
+            result = await process_single_document(blob.name, model_id)
             results.append({
                 "file": blob.name,
                 "status": "success",

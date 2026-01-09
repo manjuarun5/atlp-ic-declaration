@@ -1,0 +1,616 @@
+{
+  "ManifestDeliveryOrders": {
+    "DHLBranchCode": "", // Branch code for DHL, however keep this field as empty always
+    "DHLBranchName": "", // Name of the DHL branch, however keep this field as empty always
+    "DHLCreatedBy": "", // User ID of the person who created this entry in DHL system, however keep this field as empty always
+    "DHLUserName": "", // Username of the DHL user, however keep this field as empty always
+    "DO": {
+      "centerCode": "", // Customs center code for which the declaration is being created (Note: This is an input field to AI api)
+      "CenterNameEng": "", // Customs center name in English (This data has to be pulled from centercode lookup)
+      "CenterNameArb": "", // Customs center name in Arabic (This data has to be pulled from centercode lookup)
+      "DOClearingAgentCode": "", // Code of the clearing agent handling the delivery order
+      "DOClearingAgentEngName": "", // Clearing agent name in English
+      "DOClearingAgentArbName": "", // Clearing agent name in Arabic
+      "ImporterCode": "", // Unique code identifying the importer
+      "ImporterEngName": "", // Importer company name in English
+      "ImporterArbName": "مجوهرات المسعود ذ م م .", // Importer company name in Arabic
+      "CurrencyCode": "", // Currency code for the transaction
+      "CurrencyEng": "", // Currency name in English
+      "CurrencyArb": "", // Currency name in Arabic
+      "CarAgentCode": "", // Code of the carrier agent
+      "CarAgentEngName": "", // Carrier agent name in English
+      "CarAgentArbName": "", // Carrier agent name in Arabic
+      "DODate": null, // Date when the delivery order was created
+      "FreightAmount": null, // Total freight charges for the shipment
+      "DONumber": null, // Delivery order reference number
+      "BillTypeCode": "I", // Type of bill (I for Import)
+      "BillTypeEngName": "", // Bill type description in English
+      "BillTypeArbName": "", // Bill type description in Arabic
+      "DOCargoAgentCode": "A304", // Code of the cargo agent handling the delivery
+      "DOCargoAgentEngName": "HIKARU MIDDLE EAST SHIPPING AGENCY L.L.C", // Cargo agent name in English
+      "DOCargoAgentArbName": "هيكارو ميدل ايست شيبنغ ايجنسي ش.ذ.م.م", // Cargo agent name in Arabic
+      "StorageType": null, // Type of storage facility where cargo is held
+      "DOExpiryDate": null, // Expiry date of the delivery order
+      "ATACarnetFlag": "", // Flag indicating if ATA Carnet applies (Y/N)
+      "DORemarks": null, // Additional remarks or notes for the delivery order
+      "DOWarningMessage": "", // Warning message related to the delivery order
+      "ReqTypeCode": null, // Request type code
+      "ReqTypeNameEng": null, // Request type name in English
+      "ReqTypeNameArb": null, // Request type name in Arabic
+      "KSA_DECLARATION_ID": "", // Kingdom of Saudi Arabia declaration identifier
+      "IsBhEcommerceApplicable": "N", // Flag indicating if Bill Header is applicable for e-commerce (Y/N)
+      "FlightId": null, // Flight identifier for air cargo
+      "BCP_ARRIVAL_DATE": "", // Border control point arrival date
+      "BCP_SLOT_FROM": "", // Border control point slot start time
+      "BCP_SLOT_TO": "", // Border control point slot end time
+      "timeSlot": null, // Time slot for border control processing
+      "isShowLbaDraft": false, // Flag to show/hide LBA draft
+      "OGA_DOC_UPLOAD_FLAG": "N", // Flag for Other Government Agency document upload (Y/N)
+      "isVoyageLookup": true, // Flag to enable/disable voyage lookup
+      "KWT_DO_CODE": null, // Kuwait delivery order code
+      "IMPORTER_KWT_CODE": null // Kuwait importer code
+    },
+    "BOL": {
+      "HouseBLNumber": "TYYB1234", // House Bill of Lading number
+      "VesselCode": "MAKA", // Vessel code identifier
+      "VesselNameEng": "MAKASIB", // Vessel name in English
+      "VesselNameArb": "MAKASIB", // Vessel name in Arabic
+      "VoyageNumber": "VOYTES4343", // Voyage number for this shipment
+      "VoyageArrivalDate": "2018-12-31T20:00:00Z", // Date and time of voyage arrival
+      "VoyageRotationNo": "1802003998", // Voyage rotation number
+      "VoyageTerminalCode": "ADTKP01", // Terminal code where vessel docks
+      "MasterBLNumber": "ERR2321434", // Master Bill of Lading number
+      "UnitCode": "1000U", // Unit of measurement code
+      "UnitNameEng": "1000 U", // Unit name in English
+      "UnitNameArb": "1000 وحدة", // Unit name in Arabic
+      "Shipper": "SAMSUNG ELECTRONICS CO. LTD.", // Name of the shipper
+      "ShipperCode": "4141", // Shipper's code identifier
+      "Consignee": "MANCHESTER SHIPPING . .", // Name of the consignee
+      "NotifyParty": null, // Party to be notified upon arrival
+      "MarksNo": "", // Marks and numbers on the packages
+      "Quantity": 20, // Quantity of goods
+      "GoodDesc": "20", // Description of goods
+      "NetWeight": 15, // Net weight of the shipment
+      "Volume": null, // Volume of the shipment
+      "CargoTypeCode": "G", // Cargo type code (G for General)
+      "Cargo": null, // Cargo details
+      "CargoTypeEng": "", // Cargo type description in English
+      "CargoTypeArb": "", // Cargo type description in Arabic
+      "BLRemarks": null, // Remarks related to Bill of Lading
+      "PortCode": "NLGRZ", // Port code of loading/discharge
+      "PortNameEng": "'S-GRAVENZANDE", // Port name in English
+      "PortNameArb": "", // Port name in Arabic
+      "GrossWeight": 15, // Gross weight of the shipment
+      "KSACode": null, // Kingdom of Saudi Arabia code
+      "KSAEngName": "", // KSA name in English
+      "KSAArbName": null, // KSA name in Arabic
+      "TIRREFNumber": null, // TIR (Transport International Routier) reference number
+      "InvoiceFlag": "Y", // Flag indicating if invoice is attached (Y/N)
+      "BillFlag": "Y", // Flag indicating if bill is attached (Y/N)
+      "OrginFlag": "Y", // Flag indicating if origin certificate is attached (Y/N)
+      "PackingFlag": "Y", // Flag indicating if packing list is attached (Y/N)
+      "IsConsigneeImporterFlag": "N", // Flag indicating if consignee is the importer (Y/N)
+      "OriginPortCode": null, // Code of the port of origin
+      "OriginPortEngName": null, // Origin port name in English
+      "OriginPortArbName": null, // Origin port name in Arabic
+      "FinalPortCode": null, // Code of the final destination port
+      "FinalPortEngName": null, // Final port name in English
+      "FinalPortArbName": null, // Final port name in Arabic
+      "ConnectingVoyageNo": null, // Connecting voyage number if applicable
+      "ConnectingVesselCode": null, // Connecting vessel code if applicable
+      "ShipActivityDesc": null, // Description of ship activity
+      "ShipLocation": null, // Current location of the ship
+      "ImpVerifiedFlag": "Y" // Flag indicating if import is verified (Y/N)
+    },
+    "CustBillHeaders": {
+      "BhGccType": null, // GCC (Gulf Cooperation Council) type for bill header
+      "BhJobNumber": null, // Job number for the bill header
+      "JobNumber": null, // Main job number reference
+      "CountCode": "ABW", // Country code (ISO format)
+      "CountEngName": "ARUBA", // Country name in English
+      "CountArbName": "أروبا", // Country name in Arabic
+      "DestCountCode": null, // Destination country code
+      "DestCountEngName": null, // Destination country name in English
+      "DestCountArbName": null, // Destination country name in Arabic
+      "FromEmirates": "A", // Emirate code where goods originate
+      "ImportBillNumber": "", // Import bill number
+      "Volume": null, // Volume of goods
+      "CreditCustCode": null, // Credit customer code
+      "CreditCustEngName": "", // Credit customer name in English
+      "CreditCustArbName": "", // Credit customer name in Arabic
+      "Remarks1": null, // First remarks field
+      "Remarks2": null, // Second remarks field
+      "VoucherType": null, // Type of voucher
+      "ExitPortCode": null, // Port code for exit
+      "PortEngName": null, // Port name in English
+      "PortArbName": null, // Port name in Arabic
+      "GCCBillFlag": null, // Flag indicating if this is a GCC bill (Y/N)
+      "GCCCenterCode": null, // GCC center code
+      "GccCenterEngName": null, // GCC center name in English
+      "GccCenterArbName": null, // GCC center name in Arabic
+      "Arabic1": null, // First Arabic text field
+      "Arabic2": null, // Second Arabic text field
+      "Arabic3": null, // Third Arabic text field
+      "GCCNumber": "", // GCC identification number
+      "ExciseDecId": null, // Excise declaration identifier
+      "FanrReferenceNumber": null, // FANR (Federal Authority for Nuclear Regulation) reference number
+      "TempImportJob": null, // Temporary import job number
+      "CurrentYear": null, // Current year for the transaction
+      "OldJobNumber": null, // Previous/old job number if applicable
+      "CustBillDate": null, // Date of the customs bill
+      "AuditorDate": null, // Date when auditor reviewed
+      "CustBillNumber": 0, // Customs bill number
+      "CustBillType": "I", // Customs bill type (I for Import)
+      "StatBillFlag": "N", // Statistical bill flag (Y/N)
+      "MaqsaImportFlag": null, // MAQSA import flag
+      "GccYear": 0, // GCC year
+      "ExitFlag": "N", // Flag indicating if goods have exited (Y/N)
+      "ExitDate": null, // Date of exit
+      "ExitRemarks": null, // Remarks related to exit
+      "ReleaseDate": null, // Date when goods were released
+      "CustBillDetails": [
+        {
+          "BillType": "I", // Bill type (I for Import)
+          "Item": null, // Item number
+          "SerialNumber": 813572, // Unique serial number for this bill detail
+          "CustBillNumber": 0, // Customs bill number
+          "CurrentYear": 1970, // Year of the transaction
+          "InvoiceCenterCode": "V", // Invoice center code
+          "TermsOfShipment": null, // Terms of shipment (FOB, CIF, etc.)
+          "CountCode": "ABW", // Country code
+          "CountEngName": "ARUBA", // Country name in English
+          "CountArbName": "أروبا", // Country name in Arabic
+          "InvoiceCurrCode": "IRR", // Invoice currency code
+          "InvoiceCurrEngName": "IRANIAN RIYALS", // Invoice currency name in English
+          "InvoiceCurrArbName": "ريال ايراني", // Invoice currency name in Arabic
+          "ExemptionCode": null, // Exemption code if applicable
+          "BillCIFAmount": null, // CIF (Cost, Insurance, Freight) amount for the bill
+          "StatCIFAmount": null, // Statistical CIF amount
+          "StatNum": null, // Statistical number
+          "StatDate": null, // Statistical date
+          "DutyAmount": null, // Duty amount to be paid
+          "BillNumber": null, // Bill number
+          "Date": null, // Date of the bill
+          "Attrib14": null, // Custom attribute 14
+          "CountryCode": null, // Country code
+          "FirstEntryPoint": null, // First point of entry
+          "FreightType": "4", // Type of freight
+          "FreightCurrency": null, // Currency used for freight charges
+          "FreightCurrArbName": null, // Freight currency name in Arabic
+          "FreightCurrEngName": null, // Freight currency name in English
+          "FreightAmount": null, // Freight amount
+          "FreightAmountAED": null, // Freight amount in AED (UAE Dirham)
+          "InsuranceAmount": null, // Insurance amount
+          "OriginType": "", // Type of origin
+          "OriginTypeDesc": "", // Origin type description
+          "OriginTypeDescAr": null, // Origin type description in Arabic
+          "ExchangeRate": 0.02749, // Exchange rate for currency conversion
+          "AmountCIF": null, // CIF amount
+          "InvoiceAmount": null, // Invoice amount
+          "InvoiceWeight": null, // Weight mentioned on the invoice
+          "InvoiceRefNumber": "32423143245", // Invoice reference number
+          "CalculatedFreight": 0, // Calculated freight amount
+          "CUST_BILL_INVOICES": [
+            {
+              "DOCode": null, // Delivery order code
+              "DHLInvoiceEntryLineNumber": 0, // DHL invoice entry line number
+              "IsAlcoholProduct": false, // Flag indicating if product is alcohol
+              "IsCigarProduct": false, // Flag indicating if product is cigar/tobacco
+              "BillType": "I", // Bill type (I for Import)
+              "Item": null, // Item number
+              "BillDetailSerialNumber": 364600, // Bill detail serial number
+              "GroupSerialNo": 813572, // Group serial number
+              "InvoiceRefNumber": null, // Invoice reference number
+              "HarmonizedCode": "010121900001", // HS (Harmonized System) code for product classification
+              "Quantity": 10, // Quantity of items
+              "HarmDescription": "Of non-Arab breed males", // Description based on harmonized code
+              "HarmDescriptionArb": null, // Harmonized description in Arabic
+              "NetWeight": 10, // Net weight of items
+              "GrossWeight": 10, // Gross weight of items
+              "Amount": 10, // Amount/value of items
+              "OriginExportCode": null, // Origin export code
+              "OriginExpEngCode": "", // Origin export code in English
+              "OriginExpArbCode": "", // Origin export code in Arabic
+              "FtaHarmCode": "", // FTA (Free Trade Agreement) harmonized code
+              "FTAHarmDescEng": "", // FTA harmonized description in English
+              "FTAHarmDescArb": "", // FTA harmonized description in Arabic
+              "CifInDirhams": null, // CIF value in Dirhams
+              "DutyInDihrams": null, // Duty amount in Dirhams
+              "UnitCode": "U", // Unit of measurement code
+              "DutyPercent": 0, // Duty percentage
+              "TarrifYear": "", // Tariff year
+              "CustBillNumber": 0, // Customs bill number
+              "FreightAmount": null, // Freight amount
+              "BhCurrentYear": null, // Bill header current year
+              "GroupCustBillNumber": 0, // Group customs bill number
+              "CustBillType": "I", // Customs bill type
+              "InvoiceCenterCode": "V", // Invoice center code
+              "InvoiceSerialNo": null, // Invoice serial number
+              "HarmonizeCodeShort": "010121900001", // Short form of harmonized code
+              "IsHazardous": "N", // Flag indicating if item is hazardous (Y/N)
+              "IsFta": "N", // Flag indicating if FTA applies (Y/N)
+              "HarmonizeEngName": "Of non-Arab breed males", // Harmonized name in English
+              "HarmonizeArbName": "ذكور خيول من أصل غير عربي للأنسال", // Harmonized name in Arabic
+              "FederalRate": "", // Federal duty rate
+              "LocalRate": "", // Local duty rate
+              "SitId": "", // SIT (Special Import Tax) identifier
+              "CbiDutyPercent": null, // CBI duty percentage
+              "ProhibitionAuthority": "", // Authority for prohibition if applicable
+              "RestrictionAuthority": "Ministry of Climate Change and Environment (MOCCAE)", // Authority for restrictions
+              "ExciseFlag": null, // Excise flag
+              "MaterialType": null, // Type of material
+              "PwDoCode": null, // Previous warehouse delivery order code
+              "PwCbiBdSerialNo": null, // Previous warehouse CBI BD serial number
+              "PwCbiBdCountryCode": null, // Previous warehouse CBI BD country code
+              "PwCbiSerialNo": null, // Previous warehouse CBI serial number
+              "PwSitHarmCode": null, // Previous warehouse SIT harmonized code
+              "HazardousItems": [], // List of hazardous items if applicable
+              "CBI_CAS_NUMBER": null // CBI CAS (Chemical Abstracts Service) number
+            },
+            {
+              "DOCode": null, // Delivery order code
+              "DHLInvoiceEntryLineNumber": 0, // DHL invoice entry line number
+              "IsAlcoholProduct": false, // Flag indicating if product is alcohol
+              "IsCigarProduct": false, // Flag indicating if product is cigar/tobacco
+              "BillType": "I", // Bill type (I for Import)
+              "Item": null, // Item number
+              "BillDetailSerialNumber": 364601, // Bill detail serial number
+              "GroupSerialNo": 813572, // Group serial number
+              "InvoiceRefNumber": null, // Invoice reference number
+              "HarmonizedCode": "851713000000", // HS (Harmonized System) code for product classification
+              "Quantity": 5, // Quantity of items
+              "HarmDescription": "-- Smartphones", // Description based on harmonized code
+              "HarmDescriptionArb": null, // Harmonized description in Arabic
+              "NetWeight": 5, // Net weight of items
+              "GrossWeight": 5, // Gross weight of items
+              "Amount": 5, // Amount/value of items
+              "OriginExportCode": null, // Origin export code
+              "OriginExpEngCode": "", // Origin export code in English
+              "OriginExpArbCode": "", // Origin export code in Arabic
+              "FtaHarmCode": "", // FTA (Free Trade Agreement) harmonized code
+              "FTAHarmDescEng": "", // FTA harmonized description in English
+              "FTAHarmDescArb": "", // FTA harmonized description in Arabic
+              "CifInDirhams": null, // CIF value in Dirhams
+              "DutyInDihrams": null, // Duty amount in Dirhams
+              "UnitCode": "U", // Unit of measurement code
+              "DutyPercent": 0, // Duty percentage
+              "TarrifYear": "", // Tariff year
+              "CustBillNumber": 0, // Customs bill number
+              "FreightAmount": null, // Freight amount
+              "BhCurrentYear": null, // Bill header current year
+              "GroupCustBillNumber": 0, // Group customs bill number
+              "CustBillType": "I", // Customs bill type
+              "InvoiceCenterCode": "V", // Invoice center code
+              "InvoiceSerialNo": null, // Invoice serial number
+              "HarmonizeCodeShort": "851713000000", // Short form of harmonized code
+              "IsHazardous": "N", // Flag indicating if item is hazardous (Y/N)
+              "IsFta": "N", // Flag indicating if FTA applies (Y/N)
+              "HarmonizeEngName": "-- Smartphones", // Harmonized name in English
+              "HarmonizeArbName": "- - أجهزة هاتف ذكية (سمارت فون)", // Harmonized name in Arabic
+              "FederalRate": "", // Federal duty rate
+              "LocalRate": "", // Local duty rate
+              "SitId": "", // SIT (Special Import Tax) identifier
+              "CbiDutyPercent": null, // CBI duty percentage
+              "ProhibitionAuthority": "", // Authority for prohibition if applicable
+              "RestrictionAuthority": "", // Authority for restrictions
+              "ExciseFlag": null, // Excise flag
+              "MaterialType": null, // Type of material
+              "PwDoCode": null, // Previous warehouse delivery order code
+              "PwCbiBdSerialNo": null, // Previous warehouse CBI BD serial number
+              "PwCbiBdCountryCode": null, // Previous warehouse CBI BD country code
+              "PwCbiSerialNo": null, // Previous warehouse CBI serial number
+              "PwSitHarmCode": null, // Previous warehouse SIT harmonized code
+              "HazardousItems": [], // List of hazardous items if applicable
+              "CBI_CAS_NUMBER": null // CBI CAS (Chemical Abstracts Service) number
+            }
+          ],
+          "CustomsMaterials": [], // List of customs materials
+          "ExemptionInfo": {
+            "Attrib1": null, // Custom attribute 1 for exemption
+            "Attrib2": null, // Custom attribute 2 for exemption
+            "Attrib3": null, // Custom attribute 3 for exemption
+            "Attrib4": null, // Custom attribute 4 for exemption
+            "Attrib5": null, // Custom attribute 5 for exemption
+            "Attrib6": null, // Custom attribute 6 for exemption
+            "Attrib7": null, // Custom attribute 7 for exemption
+            "Attrib8": null, // Custom attribute 8 for exemption
+            "Attrib9": null, // Custom attribute 9 for exemption
+            "Attrib10": null, // Custom attribute 10 for exemption
+            "Attrib11": null, // Custom attribute 11 for exemption
+            "Attrib12": null, // Custom attribute 12 for exemption
+            "Attrib13": null, // Custom attribute 13 for exemption
+            "Attrib14": null, // Custom attribute 14 for exemption
+            "ExemptionCode": null, // Exemption code
+            "CountryCode": null, // Country code for exemption
+            "CountryDesc": null, // Country description
+            "FirstEntryPoint": null, // First point of entry
+            "Id": null, // Exemption identifier
+            "Function": null, // Function of the exemption
+            "DutyAmount": null, // Duty amount for exemption
+            "BillNumber": null, // Bill number related to exemption
+            "Date": null, // Date of exemption
+            "BillCifAmount": null, // Bill CIF amount
+            "StatNum": null, // Statistical number
+            "StatDate": null, // Statistical date
+            "StatCifAmount": null, // Statistical CIF amount
+            "CurrentYear": null, // Current year
+            "HeaderBillNumber": null, // Header bill number
+            "HeaderBillType": null, // Header bill type
+            "HeaderCenterCode": null, // Header center code
+            "SerialNo": null, // Serial number
+            "BdMofaicAttestRef": null // MOFAIC attestation reference for bill detail
+          },
+          "FreightDesc": "FOB", // Freight description (FOB - Free On Board)
+          "FreightExRate": null, // Freight exchange rate
+          "ForBulkUpload": false, // Flag indicating if this is for bulk upload
+          "TotalNetWeight": 0, // Total net weight of all items
+          "TotalGrossWeight": 0, // Total gross weight of all items
+          "TotalAmount": 0, // Total amount of all items
+          "TotalQuantity": 0, // Total quantity of all items
+          "BdMofaicAttestRef": null, // MOFAIC attestation reference
+          "isADCCIInvoice": false, // Flag indicating if this is an ADCCI invoice
+          "IssueDate": null, // Issue date of the invoice
+          "DO_CODE": null, // Delivery order code
+          "BD_INVOICE_CUR_OLD": null // Old invoice currency for bill detail
+        }
+      ],
+      "CustBillCharges": [], // List of customs bill charges
+      "BhSharedVessel": null, // Shared vessel information for bill header
+      "BhGccExitCent": "", // GCC exit center for bill header
+      "BhGccAmount": null, // GCC amount for bill header
+      "BhMohapRefNum": null, // MOHAP (Ministry of Health and Prevention) reference number
+      "BhEsmaRefNum": null, // ESMA (Emirates Authority for Standardization and Metrology) reference number
+      "BhValuationFlag": "N", // Valuation flag for bill header (Y/N)
+      "FZOldJobNumber": null, // Free Zone old job number
+      "CustBillDetailsMODE": { // Template object for customs bill details (used as a model/structure reference)
+        "BillType": null,
+        "Item": null,
+        "SerialNumber": null,
+        "CustBillNumber": null,
+        "CurrentYear": null,
+        "InvoiceCenterCode": null,
+        "TermsOfShipment": null,
+        "CountCode": null,
+        "CountEngName": null,
+        "CountArbName": null,
+        "InvoiceCurrCode": null,
+        "InvoiceCurrEngName": null,
+        "InvoiceCurrArbName": null,
+        "ExemptionCode": null,
+        "BillCIFAmount": null,
+        "StatCIFAmount": null,
+        "StatNum": null,
+        "StatDate": null,
+        "DutyAmount": null,
+        "BillNumber": null,
+        "Date": null,
+        "Attrib14": null,
+        "CountryCode": null,
+        "FirstEntryPoint": null,
+        "FreightType": null,
+        "FreightCurrency": null,
+        "FreightCurrArbName": null,
+        "FreightCurrEngName": null,
+        "FreightAmount": null,
+        "FreightAmountAED": null,
+        "InsuranceAmount": null,
+        "OriginType": null,
+        "OriginTypeDesc": null,
+        "OriginTypeDescAr": null,
+        "ExchangeRate": null,
+        "AmountCIF": null,
+        "InvoiceAmount": null,
+        "InvoiceWeight": null,
+        "InvoiceRefNumber": null,
+        "CalculatedFreight": null,
+        "CUST_BILL_INVOICES": [],
+        "CustomsMaterials": [],
+        "ExemptionInfo": {
+          "Attrib1": null,
+          "Attrib2": null,
+          "Attrib3": null,
+          "Attrib4": null,
+          "Attrib5": null,
+          "Attrib6": null,
+          "Attrib7": null,
+          "Attrib8": null,
+          "Attrib9": null,
+          "Attrib10": null,
+          "Attrib11": null,
+          "Attrib12": null,
+          "Attrib13": null,
+          "Attrib14": null,
+          "ExemptionCode": null,
+          "CountryCode": null,
+          "CountryDesc": null,
+          "FirstEntryPoint": null,
+          "Id": null,
+          "Function": null,
+          "DutyAmount": null,
+          "BillNumber": null,
+          "Date": null,
+          "BillCifAmount": null,
+          "StatNum": null,
+          "StatDate": null,
+          "StatCifAmount": null,
+          "CurrentYear": null,
+          "HeaderBillNumber": null,
+          "HeaderBillType": null,
+          "HeaderCenterCode": null,
+          "SerialNo": null,
+          "BdMofaicAttestRef": null
+        },
+        "FreightDesc": null,
+        "FreightExRate": null,
+        "ForBulkUpload": false,
+        "TotalNetWeight": 0,
+        "TotalGrossWeight": 0,
+        "TotalAmount": 0,
+        "TotalQuantity": 0,
+        "BdMofaicAttestRef": null,
+        "isADCCIInvoice": false,
+        "IssueDate": null,
+        "DO_CODE": null,
+        "BD_INVOICE_CUR_OLD": null
+      },
+      "CustBillChargesMODE": { // Template object for customs bill charges (used as a model/structure reference)
+        "Code": null, // Charge code
+        "Amount": null, // Charge amount
+        "Units": null, // Number of units
+        "UnitPrice": null, // Price per unit
+        "DescriptionAr": null, // Charge description in Arabic
+        "DescriptionEn": null, // Charge description in English
+        "Remarks": null // Remarks about the charge
+      },
+      "AppRefNumber": null, // Application reference number
+      "OldImporterCode": null, // Old importer code (if changed)
+      "ADCCICOONo": null, // ADCCI (Abu Dhabi Chamber of Commerce and Industry) Certificate of Origin number
+      "BhAdafsaRefNum": null, // ADAFSA (Abu Dhabi Agriculture and Food Safety Authority) reference number
+      "BhECommerceFlag": "N", // E-commerce flag for bill header (Y/N)
+      "ImporterCode": null, // Importer code
+      "IsBhEcommerceApplicable": "N", // Flag indicating if e-commerce is applicable to bill header (Y/N)
+      "bhMcyRefNum": "", // MCY (Ministry of Culture and Youth) reference number
+      "bhTdraRefNum": "", // TDRA (Telecommunications and Digital Government Regulatory Authority) reference number
+      "bhDedRefNum": null, // DED (Department of Economic Development) reference number
+      "BH_RELEAS_EE": "N", // Bill header release for energy efficiency (Y/N)
+      "BH_EE_ISSUE_AUTHORITY": "", // Energy efficiency certificate issuing authority
+      "BH_NO_EE_CERT": "", // Energy efficiency certificate number
+      "BH_EE_CERT_DATE": null, // Energy efficiency certificate date
+      "BH_EE_REF_DEC_NO": "", // Energy efficiency reference declaration number
+      "KWT_BILL_NUM": "", // Kuwait bill number
+      "BH_TDRA_COMP_ID": "d0b5cdb1-ef58-40be-a6f3-be30e220266b" // TDRA company identifier
+    },
+    "CustBillATACarnet": [], // List of ATA Carnet details for customs bill
+    "CustBillManifestDrivers": [], // List of manifest drivers for customs bill
+    "SenderId": null // Sender identifier
+  },
+  "ManifestItems": [], // List of manifest items
+  "CustBillManifestChassis": [ // List of vehicle chassis information in the manifest
+    {
+      "CountryCode": "ALB", // Country code of vehicle origin/manufacture
+      "CountryEngName": "ALBANIA", // Country name in English
+      "CountryArbName": "البانيا", // Country name in Arabic
+      "SubTypeCode": "9", // Vehicle sub-type code
+      "SubEngName": "%موتوسكوبا ار سي ام كناسة%", // Vehicle sub-type name in English
+      "SubArbName": "%موتوسكوبا ار سي ام كناسة%", // Vehicle sub-type name in Arabic
+      "BodyTypeCode": "2220", // Vehicle body type code
+      "BodyTypeEng": "2220  G G QUAD", // Body type description in English
+      "BodyTypeArb": "2220 جي جي  كوايد", // Body type description in Arabic
+      "EngineNumber": "435345", // Vehicle engine number
+      "EnginePower": "2", // Engine power/capacity
+      "PayLoad": "1", // Vehicle payload capacity
+      "Weight": "1", // Vehicle weight
+      "ModelYear": "1990", // Year of vehicle manufacture
+      "AgentRemarks": "23423", // Remarks from the agent
+      "VehicleRemarks": "", // Additional remarks about the vehicle
+      "PatrolType": "1", // Type of patrol/fuel (1 for Petrol)
+      "NumberOfDoors": "4", // Number of doors
+      "NumberOfChairs": "4", // Number of seats
+      "NumberOfWheels": "4", // Number of wheels
+      "JobNumber": "5718573", // Job number for this vehicle import
+      "PriceCIF": "3423423", // CIF price of the vehicle
+      "CurrencyCode": "DZD", // Currency code
+      "CurrenyEng": "ALGERIAN DINAR", // Currency name in English
+      "CurrencyArb": "دينار جزائري", // Currency name in Arabic
+      "TransmissionType": "2", // Transmission type (1 for Manual, 2 for Automatic)
+      "NumberOfAxils": "2", // Number of axles
+      "PoliceColorCode": "30031", // Police color code
+      "PoliceColorEngName": "ASHER GRAY METALLIC CLEARCOAT", // Police color name in English
+      "PoliceColorArbName": "ASHER GRAY METALLIC CLEARCOAT", // Police color name in Arabic
+      "Cylinders": "4", // Number of cylinders
+      "SteeringType": "2", // Steering type (1 for Left, 2 for Right)
+      "ChassisIssueFlag": "N", // Flag indicating if there's a chassis issue (Y/N)
+      "TrafficNumber": "314234", // Traffic registration number
+      "UAEID": "", // UAE ID
+      "ReExportFlag": "N", // Flag indicating if vehicle is for re-export (Y/N)
+      "VehicleSpecification": "NONGCC", // Vehicle specification (GCC or NONGCC)
+      "ChassisNumber": "3254325", // Chassis number (VIN)
+      "ColorCode": "266", // Vehicle color code
+      "ColorEngName": "ALMANDINE BEIGE", // Color name in English
+      "ColorArbName": "ذهبي فاتح", // Color name in Arabic
+      "ChassisCheckFlag": null, // Chassis check flag
+      "ExchangeRate": null, // Exchange rate for currency conversion
+      "UaePlateFlag": null, // UAE plate flag
+      "companyCode": "", // Company code
+      "userCode": "", // User code
+      "centerCode": null, // Center code
+      "NON_IMPORT_EVCC": "N" // Non-import electric vehicle charging certificate flag (Y/N)
+    }
+  ],
+  "CustBillManifestContainers": [ // List of containers in the manifest
+    {
+      "DraftId": "5718573", // Draft identifier
+      "ContainerNumber": "WERT3343243", // Container number
+      "SealNumber": "344344", // Seal number
+      "Size": null, // Container size
+      "Service": null, // Service type
+      "Weight": 10, // Weight of container
+      "Measure": 10, // Measurement/volume of container
+      "Remarks": "qwrqewr", // Remarks about the container
+      "Channel": null, // Clearance channel
+      "RowNumber": null, // Row number
+      "ContainerDoCode": null // Container delivery order code
+    }
+  ],
+  "TDRATransactions": { // TDRA (Telecommunications and Digital Government Regulatory Authority) transaction information
+    "CompanyID": "d0b5cdb1-ef58-40be-a6f3-be30e220266b", // Unique company identifier in TDRA system
+    "CompanyNameEng": null, // Company name in English
+    "CompanyNameArb": null, // Company name in Arabic
+    "TradeLicenseNo": "635", // Trade license number
+    "TradeLicenseIssueDate": "2023-11-14T00:00:00+04:00", // Trade license issue date
+    "TradeLicenseExpiryDate": "2033-09-16T00:00:00+04:00", // Trade license expiry date
+    "Equipments": [ // List of telecommunications equipment
+      {
+        "TDRACompanyId": "d0b5cdb1-ef58-40be-a6f3-be30e220266b", // TDRA company identifier
+        "EquipmentModel": "ew", // Equipment model
+        "TdraApprovalNo": "ER92379/25", // TDRA approval number
+        "EquipmentManufacturer": "we", // Equipment manufacturer
+        "HSCodeQuantity": 5, // Quantity for this HS code
+        "EquipmentSerialNo": "", // Equipment serial number
+        "HsCode": "851713000000" // HS code for the equipment
+      }
+    ]
+  },
+  "Inspections": [], // List of inspection records
+  "CUST_BILL_TRA_HDRS": { // Customs bill TRA (Traffic) headers for vehicle imports
+    "CLIENT_EMAIL": null, // Client's email address
+    "CLIENT_NAME_EN": null, // Client's first name in English
+    "CLIENT_LAST_NAME_EN": null, // Client's last name in English
+    "CLIENT_NAME_AR": null, // Client's first name in Arabic
+    "CLIENT_LAST_NAME_AR": null, // Client's last name in Arabic
+    "CLIENT_MOBILE": null, // Client's mobile number
+    "CLIENT_EID": null, // Client's Emirates ID
+    "EID_EXPIRY": null, // Emirates ID expiry date
+    "IMPORT_PURPOSE": null, // Purpose of import code
+    "IMPORT_PURPOSE_EN": null, // Purpose of import in English
+    "IMPORT_PURPOSE_AR": null, // Purpose of import in Arabic
+    "IMPORTPER_MIT_TYPE": null, // Import permit type code
+    "IMPORTPER_MIT_TYPE_EN": null, // Import permit type in English
+    "IMPORTPER_MIT_TYPE_AR": null, // Import permit type in Arabic
+    "DEALERCERTNO": null, // Dealer certificate number
+    "AIRWAY_BILL_NO": null, // Airway bill number
+    "EMARA": null, // Emirate code
+    "EMARA_EN": null, // Emirate name in English
+    "EMARA_AR": null, // Emirate name in Arabic
+    "POELOCINFO": null, // Point of entry location information
+    "ARRIVAL_DATE": null, // Arrival date
+    "EXPORT_DATE": null, // Export date
+    "CUST_BILL_TRA_DTLS": [] // Customs bill TRA details
+  },
+  "Seals": [], // List of seal information
+  "ESeals": [], // List of electronic seal information
+  "IsDuplicateDraft": "true", // Flag indicating if this is a duplicate draft
+  "Error": "", // Error message if any
+  "isValid": true, // Flag indicating if the data is valid
+  "BatchId": null, // Batch identifier if part of a batch process
+  "DraftId": "-5718573", // Draft identifier
+  "ModuleId": null, // Module identifier
+  "SubModuleId": null, // Sub-module identifier
+  "sender_id": null, // Sender identifier
+  "template_id": null, // Template identifier
+  "scenario_id": null, // Scenario identifier
+  "profile_type": null, // Profile type
+  "svmDraftId": null, // SVM (Service Virtual Machine) draft identifier
+  "VehicleRegistrationDetails": [], // List of vehicle registration details
+  "ManifestFZExit": [] // Manifest free zone exit information
+}
